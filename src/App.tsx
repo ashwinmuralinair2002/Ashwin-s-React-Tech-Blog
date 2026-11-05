@@ -4,20 +4,25 @@ import AddBlog from './pages/AddBlog'
 import BlogList from './pages/BlogList'
 import EditBlog from './pages/EditBlog'
 import BlogDetails from './pages/BlogDetails'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom'
 import DashboardLayout from './layouts/DashboardLayout'
 import NotFound from './pages/NotFound'
 import Signup from './pages/auth/Signup'
 import { AuthProvider } from './auth/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import GuestRoute from './components/GuestRoute'
+import { Toaster } from 'react-hot-toast'
 
-
+function RedirectToDashboardEditBlog() {
+  const { id } = useParams()
+  return <Navigate to={`/dashboard/edit-blog/${id ?? ''}`} replace />
+}
 
 function App() {
   return(
     <BrowserRouter>
       <AuthProvider>
+      <Toaster position="top-right" toastOptions={{ duration: 3500 }} />
       <Navbar />
         <Routes>
           <Route element={<ProtectedRoute />}>
@@ -26,9 +31,9 @@ function App() {
           <Route path='add-blog' element={<AddBlog />} />
           <Route path='edit-blog/:id' element={<EditBlog />} />
           </Route>
-          <Route path='/add-blog' element={<AddBlog />} />
-          <Route path='/edit-blog/:id' element={<EditBlog />} />
           </Route>
+          <Route path='/add-blog' element={<Navigate to='/dashboard/add-blog' replace />} />
+          <Route path='/edit-blog/:id' element={<RedirectToDashboardEditBlog />} />
           <Route path='/' element={<BlogList />}></Route>
           <Route element={<GuestRoute />}>
             <Route path='/login' element={<Login />} />

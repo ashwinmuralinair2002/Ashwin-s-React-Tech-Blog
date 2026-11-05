@@ -1,21 +1,20 @@
 import { Link } from 'react-router-dom'
 import { signOut } from 'firebase/auth'
 import { auth } from '../firebase'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
+import toast from 'react-hot-toast'
 
 function Navbar() {
     const { user } = useAuth()
-    const [error, setError] = useState('')
     const navigate = useNavigate()
     async function handleLogout() {
-        setError('')
         try {
             await signOut(auth)
+            toast.success('Logged out successfully.')
             navigate('/login')
         } catch {
-            setError('Logout failed. Please try again.')
+            toast.error('Logout failed. Please try again.')
         }
     }
   return (
@@ -37,7 +36,6 @@ function Navbar() {
 )}
       </div>
       </nav>
-      {error && <p className="form-error" role="alert">{error}</p>}
     </header>
   )
 }

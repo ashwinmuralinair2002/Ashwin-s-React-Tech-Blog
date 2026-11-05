@@ -3,29 +3,29 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '../../firebase'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import toast from 'react-hot-toast'
+import GoogleSignInButton from '../../components/GoogleSignInButton'
 
 function Signup() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
   async function handleSignup(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setError('')
     setLoading(true)
 
     try {
       await createUserWithEmailAndPassword(auth, email, password)
-
+      toast.success('Account created successfully.')
       navigate('/')
 
     } catch (error) {
       console.error(error)
-      setError('Signup failed. Please check your details.')
+      toast.error('Signup failed. Please check your details.')
     } finally {
       setLoading(false)
     }
@@ -54,7 +54,7 @@ function Signup() {
         /></label>
         <button type="submit" disabled={loading}>{loading ? 'Creating account...' : 'Sign Up'}</button>
       </form>
-      {error && <p className="form-error" role="alert">{error}</p>}
+      <GoogleSignInButton />
       <p className="form-footer">Already have an account? <Link to="/login">Log in</Link></p>
       </section>
     </main>
