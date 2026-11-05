@@ -1,75 +1,88 @@
-# React + TypeScript + Vite
+# Ashwin's Tech Blog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack blog application built with **React, TypeScript, and Firebase**. Users can create an account, publish articles, read posts, and manage their own content.
 
-Currently, two official plugins are available:
+## Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🌐 **[Visit Ashwin's Tech Blog](https://ashwins-tech-blog.web.app)**
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Authentication:** Sign up and log in using email/password or Google.
+- **Account linking:** Link Google sign-in to an existing email/password account with the same email, preserving the Firebase user identity.
+- **Blog operations:** Create, read, edit, and delete text-based blog posts.
+- **Ownership controls:** Users can edit or delete only their own articles. Other users can view published articles.
+- **Protected routes:** Restrict authenticated pages using React Router and Context API.
+- **Form validation:** Validate article titles and content before publishing.
+- **Notifications:** Display feedback using React Hot Toast and SweetAlert2.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend:** React, TypeScript, Vite
+- **Routing:** React Router DOM
+- **Authentication:** Firebase Authentication
+- **Database:** Cloud Firestore
+- **Notifications:** React Hot Toast, SweetAlert2
+- **Hosting:** Firebase Hosting
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Run Locally
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+1. Clone the repository:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+   ```bash
+   git clone https://github.com/ashwinmuralinair2002/Ashwin-s-React-Tech-Blog.git
+   cd Ashwin-s-React-Tech-Blog
+   ```
 
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env.local` file in the project root and add your Firebase web app configuration:
+
+   ```env
+   VITE_FIREBASE_API_KEY=your_api_key
+   VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+   VITE_FIREBASE_PROJECT_ID=your_project_id
+   VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+   VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
+   VITE_FIREBASE_APP_ID=your_app_id
+   VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
+   ```
+
+   Use your own Firebase project configuration. Do not commit your local `.env.local` file.
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+## Production Build
+
+Create an optimized production build:
+
+```bash
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Preview the production build locally:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run preview
 ```
+
+## Deployment
+
+This project is deployed using Firebase Hosting. To publish an updated build:
+
+```bash
+npm run build
+firebase deploy --only hosting
+```
+
+---
+
+Built as a React project as part of my learning journey with the MERN stack.
