@@ -1,29 +1,60 @@
 # Ashwin's Tech Blog
 
-A full-stack blog application built with **React, TypeScript, and Firebase**. Users can create an account, publish articles, read posts, and manage their own content.
+A blog application built using **React, TypeScript, and Firebase**. Users can create accounts, publish articles, browse posts, and manage their own content.
 
 ## Live Demo
 
-🌐 **[Visit Ashwin's Tech Blog](https://ashwins-tech-blog.web.app)**
+🌐 [Visit Ashwin's Tech Blog](https://ashwins-tech-blog.web.app)
 
 ## Features
 
-- **Authentication:** Sign up and log in using email/password or Google.
-- **Account linking:** Link Google sign-in to an existing email/password account with the same email, preserving the Firebase user identity.
-- **Blog operations:** Create, read, edit, and delete text-based blog posts.
-- **Ownership controls:** Users can edit or delete only their own articles. Other users can view published articles.
-- **Protected routes:** Restrict authenticated pages using React Router and Context API.
-- **Form validation:** Validate article titles and content before publishing.
-- **Notifications:** Display feedback using React Hot Toast and SweetAlert2.
+- **User Authentication:** Register and log in using email and password or Google.
+- **Blog Management:** Create, read, edit, and delete blog articles.
+- **Article Ownership:** Users can modify or delete only their own articles.
+- **Protected Routes:** Restrict dashboard and article management pages to authenticated users.
+- **Public Blog:** Browse and read published articles.
+- **Form Validation:** Validate article titles and content before publishing.
+- **Notifications:** Display success and error messages using React Hot Toast and SweetAlert2.
 
-## Tech Stack
+## Technology Stack
 
-- **Frontend:** React, TypeScript, Vite
+- **Frontend:** React, TypeScript
+- **Build Tool:** Vite
 - **Routing:** React Router DOM
 - **Authentication:** Firebase Authentication
 - **Database:** Cloud Firestore
+- **State Management:** Context API
 - **Notifications:** React Hot Toast, SweetAlert2
 - **Hosting:** Firebase Hosting
+
+## Project Structure
+
+```text
+src/
+├── auth/
+│   └── AuthContext.tsx
+├── components/
+│   ├── GoogleSignInButton.tsx
+│   ├── GuestRoute.tsx
+│   ├── ProtectedRoute.tsx
+│   └── navbar.tsx
+├── layouts/
+│   └── DashboardLayout.tsx
+├── pages/
+│   ├── AddBlog.tsx
+│   ├── BlogDetails.tsx
+│   ├── BlogList.tsx
+│   ├── EditBlog.tsx
+│   ├── Login.tsx
+│   ├── NotFound.tsx
+│   └── auth/
+│       └── Signup.tsx
+├── utils/
+│   └── blogValidation.ts
+├── App.tsx
+├── firebase.ts
+└── main.tsx
+```
 
 ## Run Locally
 
@@ -40,19 +71,7 @@ A full-stack blog application built with **React, TypeScript, and Firebase**. Us
    npm install
    ```
 
-3. Create a `.env.local` file in the project root and add your Firebase web app configuration:
-
-   ```env
-   VITE_FIREBASE_API_KEY=your_api_key
-   VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
-   VITE_FIREBASE_PROJECT_ID=your_project_id
-   VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-   VITE_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id
-   VITE_FIREBASE_APP_ID=your_app_id
-   VITE_FIREBASE_MEASUREMENT_ID=your_measurement_id
-   ```
-
-   Use your own Firebase project configuration. Do not commit your local `.env.local` file.
+3. Configure your Firebase project in `src/firebase.ts` using your Firebase web app configuration.
 
 4. Start the development server:
 
@@ -60,29 +79,32 @@ A full-stack blog application built with **React, TypeScript, and Firebase**. Us
    npm run dev
    ```
 
-## Production Build
+## Available Scripts
 
-Create an optimized production build:
-
-```bash
-npm run build
-```
-
-Preview the production build locally:
-
-```bash
-npm run preview
-```
+| Command | Description |
+|---|---|
+| `npm run dev` | Start the development server |
+| `npm run build` | Create a production build |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Run ESLint |
 
 ## Deployment
 
-This project is deployed using Firebase Hosting. To publish an updated build:
+The application is hosted using Firebase Hosting.
+
+To deploy an updated version:
 
 ```bash
 npm run build
 firebase deploy --only hosting
 ```
 
+## Author
+
+**Ashwin Murali Nair**
+
+[GitHub](https://github.com/ashwinmuralinair2002)
+
 ---
 
-Built as a React project as part of my learning journey with the MERN stack.
+Built as part of my React and full-stack development learning journey.
